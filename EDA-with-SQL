@@ -1,0 +1,35 @@
+1. Select a few rows
+
+SELECT * 
+FROM table_name 
+LIMIT5;
+
+2. Coalesce function
+
+coalesce(value_1, value_2 [, ...])
+
+# Operates row by row
+# Returns firs non null value
+
+SELECT *FROM prices;
+SELECTcoalesce(column_1, column_2)FROM prices;
+
+3. Casting with CAST()
+
+SELECT CAST (column_name AS integer)
+FROM table_name;
+
+4. Casting with ::
+
+#FORMAT
+-- With :: notation
+SELECT value::new_type;
+
+#EXAMPLES
+-- Cast 3.7 as an integer
+SELECT3.7::integer;
+-- Cast a column called total as an integer
+SELECT total::integerFROM prices;
+
+
+
