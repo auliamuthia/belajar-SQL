@@ -31,5 +31,70 @@ SELECT3.7::integer;
 -- Cast a column called total as an integer
 SELECT total::integerFROM prices;
 
+More summary function
 
+# Correlation Function
+SELECT corr(a, b) 
+FROM table_name;
+
+Output:
+corr        
+------------------- 
+0.637710143588615
+(1 row)
+
+# Median
+
+Percentile functions
+
+SELECT percentile_disc(percentile) WITHIN GROUP (ORDERBY column_name)
+FROM table;
+-- percentile between 0 and 1
+-> Returns a value from column
+
+SELECT percentile_cont(percentile) WITHIN GROUP (ORDER BY column_name)
+FROM table;
+-> Interpolates between values
+
+Percentile examples
+SELECT val
+FROM nums; 
+
+val 
+-----   
+1   
+3   
+4   
+5
+(4 rows)
+
+SELECT percentile_disc(.5) WITHIN GROUP (ORDERBY val), 
+       percentile_cont(.5) WITHINGROUP (ORDERBY val)
+FROM nums;
+
+Output:
+percentile_disc | percentile_cont 
+-----------------+-----------------               
+3                 |             3.5
+
+#Create Temporary Table
+
+Syntax
+
+Create Temp Table Syntax
+
+--Create table as 
+CREATE TEMP TABLE new_tablename AS
+-- Query results to store in the table
+SELECT column1, column2 
+FROM table;
+
+SelectIntoSyntax
+
+-- Select existing columns
+SELECT column1, column2 
+-- Clause to direct results to a new temp table
+INTO TEMP TABLE new_tablename 
+-- Existing table with exisitng columns
+FROMtable;
 
