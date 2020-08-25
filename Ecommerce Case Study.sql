@@ -34,7 +34,7 @@ with cte as (SELECT userid, MIN(order_time) As first_order
     GROUP BY userid)
 	select userid, first_order from cte
 
-#4) number of users who made their first order in each country, each day 
+#4) Number of users who made their first order in each country, each day 
 
 select t1.country, count (t1.userid) as Number_of_User,  MIN (t2.order_time) as First_Order
 from Analysis.dbo.[usertab$] as t1
@@ -42,7 +42,7 @@ full join Analysis.dbo.[ordertab$] as t2
 on t1.userid = t2.userid
 group by t1.country
 	
-#5)first order GMV of each user. If there is a tie, use the order with the lower orderid 
+#5) First order GMV of each user. If there is a tie, use the order with the lower orderid 
 
 select * from Analysis.dbo.[ordertab$] as a 
 	where not exists(select 1 
@@ -61,7 +61,3 @@ select u.*,
         limit 1
        ) as earliest_gmv
 from Analysis.dbo.[usertab$] as u;
-
-
-
-
